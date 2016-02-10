@@ -2,7 +2,6 @@ package hakerrank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,12 +11,12 @@ public class JavaStack {
 
     public static void main(String[] argh) {
         Scanner sc = new Scanner(System.in);
-        Stack<String> stack = new Stack<>();
+        Stack<Character> stack = new Stack<>();
         List<Boolean> balancedList = new ArrayList<>();
-        Map<String, String> relations = new HashMap<>();
-        relations.put(")", "(");
-        relations.put("}", "{");
-        relations.put("]", "[");
+        Map<Character, Character> relations = new HashMap<>();
+        relations.put(')', '(');
+        relations.put('}', '{');
+        relations.put(']', '[');
 
         int n = sc.nextInt();
         sc.nextLine();
@@ -26,13 +25,13 @@ public class JavaStack {
             String input = sc.next();
             //Complete the code
             boolean isBalanced = true;
-            for (String str : input.split("")) {
-                stack.push(str);
+            for (Character chr : input.toCharArray()) {
+                stack.push(chr);
             }
 
             while (!stack.empty()) {
-                String startStr = relations.get(stack.pop());
-                if (stack.remove(startStr)) {
+                Character startChar = relations.get(stack.pop());
+                if (stack.remove(startChar)) {
                     isBalanced = true;
                 } else {
                     isBalanced = false;
